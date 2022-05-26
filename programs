@@ -1,0 +1,41 @@
+Program 12:
+library(caret)
+library(rpart.plot)
+irisdata<-datasets::iris
+table(iris$Species)
+summary(irisdata)
+set.seed(3033)
+intrain <- createDataPartition(y = irisdata$Species, p= 0.7, list = FALSE)
+training <- irisdata[intrain,]
+testing <- irisdata[-intrain,]
+dim(training);dim(testing)
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+set.seed(3333)
+dtree_fit_info <- train(Species ~., data = training, method = "rpart",  parms = list(split = "information"),trControl=trctrl, tuneLength = 10)
+
+prp(dtree_fit_info$finalModel, box.palette="Reds", tweak=1.2)
+test_pred_info<-predict(dtree_fit_info,newdata = testing)
+confusionMatrix(test_pred_info,testing$Species)
+
+Program 11:
+require("class")
+require("datasets")
+data("iris")
+str(iris)
+summary(iris)
+set.seed(99)
+rnum<- sample(rep(1:150))
+iris<- iris[rnum,]
+normalize <- function(x){
+  return ((x-min(x))/(max(x)-min(x)))
+}
+iris.new<- as.data.frame(lapply(iris[,c(1,2,3,4)],normalize))
+head(iris.new)
+iris.train<- iris.new[1:130,]
+iris.train.target<- iris[1:130,5]
+iris.test<- iris.new[131:150,]
+iris.test.target<- iris[131:150,5]
+model1<- knn(train=iris.train, test=iris.test, cl=iris.train.target, k=16)
+table(iris.test.target, model1)
+
+Program 10:
