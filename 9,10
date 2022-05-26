@@ -1,0 +1,32 @@
+Program 10:
+library(e1071)
+library(caTools)
+library(caret)
+split <- sample.split(iris, SplitRatio = 0.7)
+train_cl <- subset(iris, split == "TRUE")
+test_cl <- subset(iris, split == "FALSE")
+train_scale <- scale(train_cl[, 1:4])
+test_scale <- scale(test_cl[, 1:4])
+set.seed(120)
+classifier_cl <- naiveBayes(Species ~ ., data = train_cl)
+classifier_cl
+y_pred <- predict(classifier_cl, newdata = test_cl)
+y_pred 
+
+Program 9:
+age <- c(25, 35, 50, 20, 30)
+salary <- c(200000, 1200000, 2000000, 10000, 2500)
+df <- data.frame( "Age" = age, "Salary" = salary, stringsAsFactors = FALSE)
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+dfNorm <- as.data.frame(lapply(df["Salary"], normalize))
+dfNorm
+dfNormZ <- as.data.frame( scale(df[1:2] ))
+dfNormZ
+DecScale <- function(x) {
+  MaxSalary <- max(salary)
+  a = x/MaxSalary
+  return(a)}
+dfNormZ <- as.data.frame(lapply(df[2], DecScale))
+dfNormZ
