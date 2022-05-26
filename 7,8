@@ -32,7 +32,7 @@ boxplot(b)
 boxplot(d)
 boxplot(d,col="red")
 miledge=mtcars$mpg
-hp=mtcars$hp
+hp=mtcars$hp 
 plot(miledge,hp)
 plot(miledge,hp,xlab = "miledge",ylab="hp",col="blue")
 library(ggplot2)
