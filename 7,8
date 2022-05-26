@@ -1,0 +1,39 @@
+Program 7:
+a1<-data.frame(id=c(101,102,103),name=c("xxx","yyy","zzz"),age=c(18,19,20))
+a2<-data.frame(id=c(104,105,106),name=c("aaa","bbb","ccc"),age=c(21,22,20))
+df_new<-rbind(a1,a2)
+df_new
+subject<-c("maths","dm","csharp","cloud","web","cg")
+s1<-cbind(df_new,subject)
+s1
+library(MASS)
+library(reshape2)
+library(reshape)
+meg<-merge(a1,s1)
+meg
+molten<-melt(df_new,id=c("name","age"))
+cat("\nAfter melting the dataframe:\n")
+molten
+ct<-cast(molten,age~variable,mean)
+ct
+library(dplyr)
+df= sam %>% full_join(s1,by="id")
+df
+df1 = merge(x=a1,y=a2,by="id",all.x=TRUE)
+df1
+df2 = merge(x=a1,y=a2,by="id",all.y =TRUE)
+df2
+
+Program 8:
+d<-airquality$Temp
+hist(d)
+hist(c,main = "max tempr",xlab = "temperature",xlim = c(50,100),col = "darkred",freq = FALSE)
+boxplot(b)
+boxplot(d)
+boxplot(d,col="red")
+miledge=mtcars$mpg
+hp=mtcars$hp
+plot(miledge,hp)
+plot(miledge,hp,xlab = "miledge",ylab="hp",col="blue")
+library(ggplot2)
+ggplot(mtcars,aes(x=mpg,y=drat))+geom_point(aes(color=factor(gear)))
