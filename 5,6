@@ -1,0 +1,29 @@
+Program 5:
+num =as.integer(readline(prompt="Enter a number:"))
+factorial = 1
+{for (i in 1:num) 
+  {
+    factorial = factorial*i;
+  }
+print(paste("the factorial of ",num," is ",factorial))
+}
+
+Program 6:
+Data<-read.csv(“input.csv”)
+Print(data)
+Y<-data$salary
+Print(y)
+y
+a=as.integer(readline(prompt = "Enter the number:"))
+while(a!=0)
+{
+  d=as.integer(readline(prompt = "Enter your Choice:"))
+  res=switch(
+    d,
+    "1"=cat("mean=",mean(y)),
+    "2"= cat("median=",median(y)),
+    "3"=cat("SD=",sd(y)),
+    "4"=cat("var=",var(y)),
+    if(d > 4){break;}
+  )
+}
